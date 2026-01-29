@@ -105,37 +105,91 @@
   // --- FUNKCJA SPRAWDZAJĄCA I RESETUJĄCA LICZNIK ---
   // Wywoływana przy każdym odświeżeniu UI, żeby zawsze mieć świeże dane
   function getAndEnsureDailyStats() {
-    console.log("[IAI Bonus] RAW daily:", GM_getValue(KEY.daily));
-
-    let stats = safeParse(GM_getValue(KEY.daily), {});
+    const raw = GM_getValue(KEY.daily);
+    let stats = safeParse(raw, {});
     const today = getTodayKey();
 
-    // jeśli safeParse zwrócił {}, zadbaj o strukturę
+    // Upewnij się, że stats to obiekt
     if (!stats || typeof stats !== "object") stats = {};
 
-    // normalizacja daty (obsługa np. "2026-01-29T08:00:00.000Z")
-    const storedDay =
-      typeof stats.date === "string" ? stats.date.slice(0, 10) : "";
+    // Pobierz zapisaną datę (bezpiecznie)
+    const storedDate = (stats.date || "").substring(0, 10);
 
-    // jeśli to dalej "ten sam dzień", tylko napraw format i nie czyść ids
-    if (storedDay === today) {
-      stats.date = today;
+    // Jeśli data się zgadza, naprawiamy tylko ewentualne braki w strukturze
+    if (storedDate === today) {
       if (!Array.isArray(stats.ids)) stats.ids = [];
-      if (typeof stats.count !== "number") stats.count = 0;
-      GM_setValue(KEY.daily, JSON.stringify(stats));
+      if (typeof stats.count !== "number") stats.count = stats.ids.length; // Autokorekta licznika
+
+      // Zapisz tylko jeśli struktura była uszkodzona, żeby nie mieli dysku
+      if (!Array.isArray(stats.ids))
+        GM_setValue(KEY.daily, JSON.stringify(stats));
+
       return stats;
     }
 
-    // dopiero realna zmiana dnia -> reset
-    if (!storedDay || storedDay !== today) {
-      stats = { date: today, count: 0, ids: [] };
-      GM_setValue(KEY.daily, JSON.stringify(stats));
+    // Jeśli data jest inna (nowy dzień) LUB brak daty -> RESET
+    console.log(
+      `[IAI Bonus] Nowy dzień lub brak danych. Reset: ${storedDate} -> ${today}`,
+    );
+    stats = { date: today, count: 0, ids: [] };
+    GM_setValue(KEY.daily, JSON.stringify(stats));
+    return stats;
+  }
+
+  // --- POPRAWIONA FUNKCJA DODAWANIA PUNKTU ---
+  function addPoint(id, title, method) {
+    if (!id) return false;
+
+    // 1. Pobierz aktualny stan (z ewentualnym resetem dnia)
+    let stats = getAndEnsureDailyStats();
+
+    // 2. Sprawdź duplikaty w bieżącej sesji
+    if (stats.ids.includes(id)) {
+      console.log(`[IAI Bonus] ID #${id} już istnieje w dzisiejszej liście.`);
+      return false;
     }
 
-    if (!Array.isArray(stats.ids)) stats.ids = [];
-    if (typeof stats.count !== "number") stats.count = 0;
+    // 3. Sprawdź historię (zabezpieczenie dublowania)
+    const hist = getCleanHistory();
+    const alreadyInHistory = hist.some(
+      (entry) => entry.id === id && entry.date.startsWith(getTodayKey()),
+    );
 
-    return stats;
+    if (alreadyInHistory) {
+      console.log(
+        `[IAI Bonus] Znaleziono w historii #${id} - naprawiam listę ID (bez dodawania punktu)`,
+      );
+      // Naprawa spójności: jest w historii, a nie ma w ids? Dodaj do ids, ale nie zwiększaj licznika (bo już policzone)
+      if (!stats.ids.includes(id)) {
+        stats.ids.push(id);
+        // Opcjonalnie: stats.count = stats.ids.length;
+        GM_setValue(KEY.daily, JSON.stringify(stats));
+      }
+      return false;
+    }
+
+    // 4. To jest faktycznie nowy punkt - dodaj go
+    stats.ids.push(id);
+    stats.count++; // Zwiększ licznik
+
+    // ZAPISZ STAN
+    GM_setValue(KEY.daily, JSON.stringify(stats));
+
+    // Zapisz w historii
+    hist.push({
+      date: new Date().toISOString(),
+      id: id,
+      title: title || "?",
+      method: method,
+    });
+    GM_setValue(KEY.history, JSON.stringify(hist));
+
+    // Odśwież UI
+    if (hudEl) refreshStatsUI();
+    if (document.getElementById("iai-top-bar")) updateTopBar();
+
+    console.log(`[IAI Bonus] Dodano punkt #${id}. Nowy stan: ${stats.count}`);
+    return true;
   }
 
   function isNonBonusTicket(textContext) {
