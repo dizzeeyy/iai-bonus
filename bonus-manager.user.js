@@ -400,45 +400,45 @@
     return parsed;
   }
 
-  function addPoint(id, title, method) {
-    if (!id) return false;
+  //   function addPoint(id, title, method) {
+  //     if (!id) return false;
 
-    // Zamiast czytać surowe dane, używamy funkcji, która je naprawi/zresetuje jeśli stary dzień
-    let stats = getAndEnsureDailyStats();
+  //     // Zamiast czytać surowe dane, używamy funkcji, która je naprawi/zresetuje jeśli stary dzień
+  //     let stats = getAndEnsureDailyStats();
 
-    if (stats.ids.includes(id)) return false;
-    const hist = getCleanHistory();
-    const alreadyInHistory = hist.some(
-      (entry) => entry.id === id && entry.date.startsWith(getTodayKey()),
-    );
+  //     if (stats.ids.includes(id)) return false;
+  //     const hist = getCleanHistory();
+  //     const alreadyInHistory = hist.some(
+  //       (entry) => entry.id === id && entry.date.startsWith(getTodayKey()),
+  //     );
 
-    if (alreadyInHistory) {
-      console.log(
-        `[IAI Bonus] Znaleziono w historii #${id} - naprawiam listę ID`,
-      );
-      if (!stats.ids.includes(id)) {
-        stats.ids.push(id);
-        GM_setValue(KEY.daily, JSON.stringify(stats));
-      }
-      return false;
-    }
+  //     if (alreadyInHistory) {
+  //       console.log(
+  //         `[IAI Bonus] Znaleziono w historii #${id} - naprawiam listę ID`,
+  //       );
+  //       if (!stats.ids.includes(id)) {
+  //         stats.ids.push(id);
+  //         GM_setValue(KEY.daily, JSON.stringify(stats));
+  //       }
+  //       return false;
+  //     }
 
-    stats.ids.push(id);
-    stats.count++;
-    GM_setValue(KEY.daily, JSON.stringify(stats));
+  //     stats.ids.push(id);
+  //     stats.count++;
+  //     GM_setValue(KEY.daily, JSON.stringify(stats));
 
-    hist.push({
-      date: new Date().toISOString(),
-      id: id,
-      title: title || "?",
-      method: method,
-    });
-    GM_setValue(KEY.history, JSON.stringify(hist));
+  //     hist.push({
+  //       date: new Date().toISOString(),
+  //       id: id,
+  //       title: title || "?",
+  //       method: method,
+  //     });
+  //     GM_setValue(KEY.history, JSON.stringify(hist));
 
-    if (hudEl) refreshStatsUI();
-    if (document.getElementById("iai-top-bar")) updateTopBar();
-    return true;
-  }
+  //     if (hudEl) refreshStatsUI();
+  //     if (document.getElementById("iai-top-bar")) updateTopBar();
+  //     return true;
+  //   }
 
   function exportHistory() {
     const historyLogs = getCleanHistory();
