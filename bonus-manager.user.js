@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         IAI Bonus Manager (v11)
 // @namespace    http://tampermonkey.net/
-// @version      11.3
+// @version      11.4
 // @description  Monitor + Detektyw + Notatki + Statystyki + Auto-Reset Dnia
 // @author       Grzegorz Maciejczak
 // @match        https://*.iai-system.com/panel/tickets.php*
