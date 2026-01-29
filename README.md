@@ -12,7 +12,7 @@ Skrypt automatyzujący zliczanie ticketów i monitorowanie celu dziennego.
 
 Przy pierwszym uruchomieniu zostaniesz poproszony o podanie:
 
-- Imienia i Nazwiska (jak w systemie)
+- Imienia i Nazwiska **(jak w systemie)**
 - Celu dziennego
 
 # Działanie
@@ -29,14 +29,15 @@ Gdyby były jeszcze jakieś scenariusze poza tymi, które są wymienione, to daj
 Aktualnie obsługiwane wyjątki w logice:
 
 - jeśli komunikat został zabrany przez kogoś innego z Twojej listy, nie zalicza, bo ostatnią osobą w komunikacie podczas przenoszenia nie jesteś Ty,
-- skrypt nie zlicza komunikatów, które są: Escalation, Improvement, New feature suggestion, Internal support.
+- skrypt nie zlicza komunikatów, które są: Escalation, Improvement, New feature suggestion, Internal support,
+- **zespół _Aplikacji pomocniczych_ nie pracuje na rozdzielniku, ale to w teorii też powinno zostać obsłużone**, czyli zabierając ticket z rozdzielnika z pierwszą wiadomością do klienta powienien on zostać od razu oznaczony jako wykonany
 
 # Funkcjonalności
 
-1. Skanuj: rozpoczyna skanowanie pliku JSON i listy komunikatów - przydatne po zamknięciu notatki z rozmowy - natychmiast jest ona uwzględniana w UI skryptu.
-2. JSON: eksportuje całą historię odpowiedzi na komunikaty oraz ilości zrealizowanych celów. Warto robić raz dziennie co najmniej.
-3. Import: gdyby były problemy z danymi, to można wyeksportowany plik JSON edytować zgodnie ze schematem, a następnie zaimportować - dane zostaną odświeżone.
-4. Ustawienia: imię i nazwisko trzeba podać tak jak jest w iai-system, bez spacji na końcu i początku, zachowując wielkość liter. Cel dla skryptu polecam ustawić na drugi próg - większa motywacja :D
+1. **Skanuj**: rozpoczyna skanowanie pliku JSON i listy komunikatów - przydatne po zamknięciu notatki z rozmowy - natychmiast jest ona uwzględniana w UI skryptu.
+2. **JSON**: eksportuje całą historię odpowiedzi na komunikaty oraz ilości zrealizowanych celów. Warto robić raz dziennie co najmniej.
+3. **Import**: gdyby były problemy z danymi, to można wyeksportowany plik JSON edytować zgodnie ze schematem, a następnie zaimportować - dane zostaną odświeżone.
+4. **Ustawienia**: imię i nazwisko trzeba podać tak jak jest w iai-system, bez spacji na końcu i początku, zachowując wielkość liter. Cel dla skryptu polecam ustawić na drugi próg - większa motywacja :D
 5. Licznik komunikatów automatycznie zeruje się codziennie
 
 # Feedback
