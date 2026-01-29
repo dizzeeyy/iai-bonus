@@ -587,8 +587,9 @@
     const container =
       document.querySelector(".ticket-container") ||
       document.querySelector(".ticket-table");
-    if (container && container.parentNode)
+    if (container && container.parentNode) {
       container.parentNode.insertBefore(bar, container);
+    }
     updateTopBar();
   }
 
