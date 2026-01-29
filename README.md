@@ -30,7 +30,7 @@ Aktualnie obsługiwane wyjątki w logice:
 
 - jeśli komunikat został zabrany przez kogoś innego z Twojej listy, nie zalicza, bo ostatnią osobą w komunikacie podczas przenoszenia nie jesteś Ty,
 - skrypt nie zlicza komunikatów, które są: Escalation, Improvement, New feature suggestion, Internal support,
-- **zespół _Aplikacji pomocniczych_ nie pracuje na rozdzielniku, ale to w teorii też powinno zostać obsłużone**, czyli zabierając ticket z rozdzielnika z pierwszą wiadomością do klienta powienien on zostać od razu oznaczony jako wykonany
+- **zespół _Aplikacji pomocniczych_ nie pracuje na rozdzielniku, ale to w teorii też powinno zostać obsłużone**, czyli zabierając ticket z rozdzielnika z pierwszą wiadomością do klienta powienien on zostać od razu oznaczony jako wykonany, pod warunkiem, że przechodzi przez Waszą listę. **Zamknięcie ticketu z rozdzielnika na siebie nie zaliczy się do postępu.**
 
 # Funkcjonalności
 
