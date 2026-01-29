@@ -34,6 +34,11 @@ Aktualnie obsługiwane wyjątki w logice:
 - **zespół _Aplikacji pomocniczych_ nie pracuje na rozdzielniku, ale to w teorii też powinno zostać obsłużone**, czyli zabierając ticket z rozdzielnika z pierwszą wiadomością do klienta powienien on zostać od razu oznaczony jako wykonany, pod warunkiem, że przechodzi przez Waszą listę. **Zamknięcie ticketu z rozdzielnika na siebie nie zaliczy się do postępu,**
 - rozbicie komunikatu, czyli wydzielenie komunikatu na siebie, bez jeszcze wiadomości od klienta też zadziała, bo jest to komunikat z Twoją ostatnią odpowiedzią.
 
+**_Na pewno nie jest obsługiwany scenariusz, w którym: odpowiesz klientowi na ticket, nie odświeżysz listy ticketów i ticket nie zostanie automatycznie zaliczony, a klient w międzyczasie Ci odpowie._**
+Dlaczego?
+**Ticket najpierw musi być wpisany do "bazy" i pliku JSON, a jest on wpisywany automatycznie po odświeżeniu listy ticketów, jeśli zniknął i to była Twoja odpowiedź.**
+Zatem jeśli ticket zniknie nawet z Twoją odpowiedzią, ale nie odświeżysz lity, a komunikat zdąży wrócić od klienta - no to klops. Ale zawsze możesz ręcznie edytować JSON i ten ticket tam wpisać.
+
 # Funkcjonalności
 
 1. **Skanuj**: rozpoczyna skanowanie pliku JSON i listy komunikatów - przydatne po zamknięciu notatki z rozmowy - natychmiast jest ona uwzględniana w UI skryptu.
