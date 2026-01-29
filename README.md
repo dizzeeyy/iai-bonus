@@ -21,7 +21,7 @@ Przy pierwszym uruchomieniu zostaniesz poproszony o podanie:
 ## Skrypt automatycznie zlicza komunikaty, na które w danym dniu została udzielona odpowiedź:
 
 - jeśli komunikat był na liście i go zamknęliście, po odświeżeniu listy komunikatów bonus manager automatycznie wykryje ilość komunikatów zamkniętych oraz doda je do JSON, dzięki któremu weryfikuje to, czy komunikat był już realizowany,
-- notatka po rozmowie: po zamknięciu rozmowy i utworzeniu notatki, pozostańcie na niej z 2-3 sekundy, dopóki przeglądarka nie wyświetli powiadomienia, skrypt automatycznie dodaje notatki z rozmowy do listy zrealizowanych celów.
+- notatka po rozmowie: po zamknięciu rozmowy i utworzeniu notatki, pozostańcie na niej z 2-3 sekundy, dopóki przeglądarka nie wyświetli powiadomienia, skrypt automatycznie dodaje notatki z rozmowy do listy zrealizowanych celów. Jeśli przypadkowo za szybko zamknąłeś notatkę po rozmowie, to kliknij CTRL+SHIFT+T, otworzy się na nowo, a skrypt ją dopisze, jeśli ta notatka była wpisana, to nie zduplikuje się.
 
 ## Dodatkowe scenariusze
 
