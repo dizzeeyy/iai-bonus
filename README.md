@@ -50,7 +50,8 @@ Zatem jeśli ticket zniknie nawet z Twoją odpowiedzią, ale nie odświeżysz li
 2. **JSON**: eksportuje całą historię odpowiedzi na komunikaty oraz ilości zrealizowanych celów. Warto robić raz dziennie co najmniej.
 3. **Import**: gdyby były problemy z danymi, to można wyeksportowany plik JSON edytować zgodnie ze schematem, a następnie zaimportować - dane zostaną odświeżone.
 4. **Ustawienia**: imię i nazwisko trzeba podać tak jak jest w iai-system, bez spacji na końcu i początku, zachowując wielkość liter. Cel dla skryptu polecam ustawić na drugi próg - większa motywacja :D
-5. Licznik komunikatów automatycznie zeruje się codziennie
+5. **Raport**: zapisuje do bazy i JSON dzienny postęp, można to **robić wielokrotnie** i tak też zalecam.
+6. Licznik komunikatów automatycznie zeruje się codziennie
 
 # Feedback
 
