@@ -5,7 +5,7 @@ Skrypt automatyzujący zliczanie ticketów i monitorowanie celu dziennego.
 # Instalacja
 
 1. Zainstaluj dodatek [Tampermonkey](https://www.tampermonkey.net/).
-2. Wykonaj instrukcje od Tampermonkey, inaczej skrypty się nie uruchomią: [instrukcja](https://www.tampermonkey.net/faq.php?locale=en#Q209)
+2. Wykonaj instrukcje od Tampermonkey, **inaczej skrypty się nie uruchomią**: [instrukcja](https://www.tampermonkey.net/faq.php?locale=en#Q209)
 3. [Kliknij tutaj, aby zainstalować skrypt](https://raw.githubusercontent.com/dizzeeyy/iai-bonus/main/bonus-manager.user.js).
 4. Kliknij **Zainstaluj**.
 
