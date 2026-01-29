@@ -13,8 +13,8 @@
 // @grant        GM_getValue
 // @grant        GM_download
 // @run-at       document-end
-// @updateURL    https://raw.githubusercontent.com/dizzeeyy/iai-bonus/main/iai-manager.user.js
-// @downloadURL  https://raw.githubusercontent.com/dizzeeyy/iai-bonus/main/iai-manager.user.js
+// @updateURL    https://raw.githubusercontent.com/dizzeeyy/iai-bonus/main/bonus-manager.user.js
+// @downloadURL  https://raw.githubusercontent.com/dizzeeyy/iai-bonus/main/bonus-manager.user.js
 // ==/UserScript==
 
 (function() {
