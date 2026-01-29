@@ -573,7 +573,8 @@
     const alerts = document.querySelectorAll(
       ".ticket-table .divTableRow:not(.iai-done)",
     ).length;
-    document.getElementById("iai-alerts").innerText = alerts;
+    document.getElementById("iai-alerts").innerText =
+      alerts - isNonBonusTicket.length;
   }
 
   function injectTopBar() {
@@ -606,7 +607,7 @@
 
     const content = document.getElementById("iai-top-content");
     if (content) {
-      content.innerHTML = `<div>Do zrobienia: <b>${alerts}</b></div><div>Wynik: <b>${stats.count} / ${CONFIG.dailyGoal}</b> (${progress.toFixed(0)}%)</div>`;
+      content.innerHTML = `<div>Do zrobienia: <b>${alerts - isNonBonusTicket.length}</b></div><div>Wynik: <b>${stats.count} / ${CONFIG.dailyGoal}</b> (${progress.toFixed(0)}%)</div>`;
     }
     const progressBar = document.getElementById("iai-progress");
     if (progressBar) {
