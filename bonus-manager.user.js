@@ -202,6 +202,82 @@
     return true;
   }
 
+  // --- FUNKCJA USUWANIA PUNKTU (Manual) ---
+  function removePoint(id) {
+    if (!id) return;
+
+    // 1. Aktualizacja statystyk dziennych
+    let stats = getAndEnsureDailyStats();
+    if (!stats.ids.includes(id)) {
+      alert(`ID #${id} nie znajduje się na dzisiejszej liście wykonanych.`);
+      return;
+    }
+
+    stats.ids = stats.ids.filter((item) => item !== id);
+    stats.count = stats.ids.length; // Przeliczamy licznik
+    GM_setValue(KEY.daily, JSON.stringify(stats));
+
+    // 2. Czyszczenie historii (wymagane, bo addPoint sprawdza historię)
+    let hist = getCleanHistory();
+    const initialLength = hist.length;
+    // Usuwamy wpisy z tym ID, które są z dzisiaj
+    hist = hist.filter(
+      (entry) => !(entry.id === id && entry.date.startsWith(getTodayKey())),
+    );
+    GM_setValue(KEY.history, JSON.stringify(hist));
+
+    // 3. Odświeżenie UI
+    refreshStatsUI();
+    updateTopBar();
+
+    // Opcjonalnie: zdjęcie klasy .iai-done z tabeli (jeśli widać ten wiersz)
+    const rows = document.querySelectorAll(".ticket-table .divTableRow");
+    rows.forEach((row) => {
+      const link = row.querySelector(".divTableCell6 a");
+      if (link && link.href.includes(`ticketId=${id}`)) {
+        row.classList.remove("iai-done");
+        const badge = row.querySelector(".iai-badge");
+        if (badge) badge.remove();
+      }
+    });
+
+    console.log(`[IAI Bonus] Usunięto ręcznie ID #${id}`);
+    alert(`Usunięto punkt #${id}.`);
+  }
+
+  function handleManualInput() {
+    const input = prompt(
+      "[IAI Manager]\n\n" +
+        "1. Wpisz ID zgłoszenia, aby je DODAĆ (np. 123456).\n" +
+        "2. Wpisz ID z minusem, aby je USUNĄĆ (np. -123456).",
+    );
+
+    if (!input) return;
+
+    const trimmed = input.trim();
+
+    // Logika usuwania (jeśli zaczyna się od minusa)
+    if (trimmed.startsWith("-")) {
+      const idToRemove = trimmed.substring(1); // utnij minus
+      removePoint(idToRemove);
+    }
+    // Logika dodawania
+    else {
+      // Sprawdzamy czy to liczba, żeby nie dodać śmieci
+      if (!/^\d+$/.test(trimmed)) {
+        alert("To nie wygląda na poprawne ID ticketa.");
+        return;
+      }
+
+      const success = addPoint(trimmed, "Manual Add", "MANUAL");
+      if (success) {
+        alert(`Dodano punkt #${trimmed}!`);
+      } else {
+        alert(`Nie dodano #${trimmed} (duplikat lub błąd).`);
+      }
+    }
+  }
+
   function isNonBonusTicket(textContext) {
     if (!textContext) return false;
     return CONFIG.nonBonusPhrases.some((phrase) =>
@@ -339,6 +415,7 @@
                     <button id="btn-import" class="hud-btn" style="border:1px dashed #555">Import</button>
                     <button id="btn-stats" class="hud-btn hud-btn-stat">Raport</button>
                     <button id="btn-settings" class="hud-btn hud-btn-icon" title="Ustawienia">⚙️</button>
+                    <button id="btn-manual-add" class="hud-btn hud-btn-icon" title="Ręczne dodanie">✍️</button>
                 </div>
             </div>
         `;
@@ -377,6 +454,7 @@
       document.getElementById("btn-settings").onclick = openSettings;
       document.getElementById("btn-close-stats").onclick = closeStats;
       document.getElementById("btn-save-db").onclick = saveDailyToDb;
+      document.getElementById("btn-manual-add").onclick = handleManualInput;
     }, 500);
 
     refreshStatsUI();
