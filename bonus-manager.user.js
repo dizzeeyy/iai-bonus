@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         IAI Bonus Manager (v11)
 // @namespace    http://tampermonkey.net/
-// @version      11.5
+// @version      11.6
 // @description  Monitor + Detektyw + Notatki + Statystyki + Auto-Reset Dnia
 // @author       Grzegorz Maciejczak
 // @match        https://*.iai-system.com/panel/tickets.php*
@@ -349,7 +349,7 @@
 
   GM_addStyle(`
         /* GŁÓWNY HUD */
-        #iai-hud { position: fixed; bottom: 20px; right: 20px; width: 250px; background: #1e1f22; color: #dcddde; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 12px; z-index: 99990; box-shadow: 0 8px 24px rgba(0,0,0,0.4); border: 1px solid #2e3035; overflow: hidden; transition: opacity 0.3s; }
+        #iai-hud { position: fixed; bottom: 20px; right: 20px; width: 280px; background: #1e1f22; color: #dcddde; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 12px; z-index: 99990; box-shadow: 0 8px 24px rgba(0,0,0,0.4); border: 1px solid #2e3035; overflow: hidden; transition: opacity 0.3s; }
         .hud-header { padding: 12px 16px; background: #2b2d31; border-bottom: 1px solid #1e1f22; display: flex; justify-content: space-between; align-items: center; font-weight: 600; letter-spacing: 0.5px; }
         .hud-body { padding: 12px 16px; }
         .hud-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 12px; color: #b9bbbe; }
@@ -414,8 +414,8 @@
                     <button id="btn-export" class="hud-btn" title="Pobierz">JSON</button>
                     <button id="btn-import" class="hud-btn" style="border:1px dashed #555">Import</button>
                     <button id="btn-stats" class="hud-btn hud-btn-stat">Raport</button>
-                    <button id="btn-settings" class="hud-btn hud-btn-icon" title="Ustawienia">⚙️</button>
                     <button id="btn-manual-add" class="hud-btn hud-btn-icon" title="Ręczne dodanie">✍️</button>
+                    <button id="btn-settings" class="hud-btn hud-btn-icon" title="Ustawienia">⚙️</button>
                 </div>
             </div>
         `;
