@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         IAI Bonus Manager (v11)
 // @namespace    http://tampermonkey.net/
-// @version      11.6
+// @version      11.7
 // @description  Monitor + Detektyw + Notatki + Statystyki + Auto-Reset Dnia
 // @author       Grzegorz Maciejczak
 // @match        https://*.iai-system.com/panel/tickets.php*
@@ -410,12 +410,12 @@
                 <div class="hud-row"><span>Do zrobienia:</span> <span id="iai-alerts" class="hud-val">0</span></div>
                 <div id="iai-log" class="hud-log">Gotowy.</div>
                 <div class="hud-btn-group">
+                    <button id="btn-manual-add" class="hud-btn hud-btn-icon" title="Ręczne dodanie">✍️</button>
                     <button id="btn-check" class="hud-btn">Skanuj</button>
                     <button id="btn-export" class="hud-btn" title="Pobierz">JSON</button>
                     <button id="btn-import" class="hud-btn" style="border:1px dashed #555">Import</button>
                     <button id="btn-stats" class="hud-btn hud-btn-stat">Raport</button>
-                    <button id="btn-manual-add" class="hud-btn hud-btn-icon" title="Ręczne dodanie">✍️</button>
-                    <button id="btn-settings" class="hud-btn hud-btn-icon" title="Ustawienia">⚙️</button>
+                    <button id="btn-settings" class="hud-btn hud-btn-icon" title="Ustawienia" ${CONFIG.myName && CONFIG.dailyGoal ? 'disabled="true" style="background-color: #5865f2"' : ""}>${CONFIG.myName && CONFIG.dailyGoal ? "🔒" : "⚙️"}</button>
                 </div>
             </div>
         `;
