@@ -13,7 +13,7 @@ Skrypt automatyzujący zliczanie ticketów i monitorowanie celu dziennego.
 
 Przy pierwszym uruchomieniu zostaniesz poproszony o podanie:
 
-- Imienia i Nazwiska **(jak w systemie)**
+- Imienia i Nazwiska **(jak w systemie, np. Jan Kowalski)**
 - Celu dziennego
 
 # Działanie
