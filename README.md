@@ -46,12 +46,13 @@ Zatem jeśli ticket zniknie nawet z Twoją odpowiedzią, ale nie odświeżysz li
 
 # Funkcjonalności
 
-1. **Skanuj**: rozpoczyna skanowanie pliku JSON i listy komunikatów - przydatne po zamknięciu notatki z rozmowy - natychmiast jest ona uwzględniana w UI skryptu.
-2. **JSON**: eksportuje całą historię odpowiedzi na komunikaty oraz ilości zrealizowanych celów. Warto robić raz dziennie co najmniej.
-3. **Import**: gdyby były problemy z danymi, to można wyeksportowany plik JSON edytować zgodnie ze schematem, a następnie zaimportować - dane zostaną odświeżone.
-4. **Ustawienia**: imię i nazwisko trzeba podać tak jak jest w iai-system, bez spacji na końcu i początku, zachowując wielkość liter. Cel dla skryptu polecam ustawić na drugi próg - większa motywacja :D
-5. **Raport**: zapisuje do bazy i JSON dzienny postęp, można to **robić wielokrotnie** i tak też zalecam.
-6. Licznik komunikatów automatycznie zeruje się codziennie
+1. **Ręczne przypisanie lub usunięcie komunikatu**: na ten moment nieobsługiwane scenariusze sugeruję realizować przez ręczne modyfikacje danych, wystarczy podawać numer komunikatu, aby go dodać. Jeśli chcesz odjąć komunikat, bo został nieprawidłowo zaliczony, to prześlij jego numer z minusem na początku np. -1239811128.
+2. **Skanuj**: rozpoczyna skanowanie pliku JSON i listy komunikatów - przydatne po zamknięciu notatki z rozmowy - natychmiast jest ona uwzględniana w UI skryptu.
+3. **JSON**: eksportuje całą historię odpowiedzi na komunikaty oraz ilości zrealizowanych celów. Warto robić raz dziennie co najmniej.
+4. **Import**: gdyby były problemy z danymi, to można wyeksportowany plik JSON edytować zgodnie ze schematem, a następnie zaimportować - dane zostaną odświeżone.
+5. **Ustawienia**: imię i nazwisko trzeba podać tak jak jest w iai-system, bez spacji na końcu i początku, zachowując wielkość liter. Cel dla skryptu polecam ustawić na drugi próg - większa motywacja :D
+6. **Raport**: zapisuje do bazy i JSON dzienny postęp, można to **robić wielokrotnie** i tak też zalecam.
+7. Licznik komunikatów automatycznie zeruje się codziennie.
 
 # Feedback
 
